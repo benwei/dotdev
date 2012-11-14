@@ -16,10 +16,12 @@ showlink() {
 
 dotrc () {
     target="$HOME/.$1"
-    src="$HOME/$DOTPATH/$1"
+    src="$DOTPATH/$1"
 
-    if [ -n "$2" ]; then
-        src="$HOME/$DOTPATH/$2"
+    if [ "$2" = "none" ]; then
+        src="$DOTPATH" # special for vim
+    elif [ -n "$2" ]; then
+        src="$DOTPATH/$2"
     fi
 
     if [ ! -h "$target" ]; then
@@ -31,7 +33,7 @@ dotrc () {
 }
 
 # vim
-dotrc 'vim'
+dotrc 'vim' 'none'
 dotrc 'vimrc'
 
 # tmux
