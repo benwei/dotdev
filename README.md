@@ -18,11 +18,16 @@ cd dotdev; sh subinit.sh
 * guide
  - https://wiki.archlinux.org/index.php/Tmux
 
+## terminal 256 color
 * test 256 colors support or not?
 
 $ echo -e "My favorite color is \033[38;5;148mYellow-Green\033[39m" # should see yellow green color text, otherwise not support 256 colors.
 $ tput colors
 256
+
+* in pietty with TERM=xterm
+ - export TERM=xterm-256color
+ - tested terminalcolors.py with ubuntu
 
 ## git
 ### tools
