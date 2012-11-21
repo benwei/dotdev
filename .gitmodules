@@ -31,36 +31,3 @@
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
-[submodule "bunndle/vim-fugitive"]
-	path = bunndle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "bunndle/vim-colors-solarized"]
-	path = bunndle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "bunndle/vim-powerline"]
-	path = bunndle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
-[submodule "bunndle/nerdtree"]
-	path = bunndle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bunndle/vim-autoclose"]
-	path = bunndle/vim-autoclose
-	url = https://github.com/Townk/vim-autoclose
-[submodule "bunndle/tagbar"]
-	path = bunndle/tagbar
-	url = git://github.com/majutsushi/tagbar
-[submodule "bunndle/vim-ruby"]
-	path = bunndle/vim-ruby
-	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "bunndle/ack.vim"]
-	path = bunndle/ack.vim
-	url = git://github.com/mileszs/ack.vim.git
-[submodule "bunndle/supertab"]
-	path = bunndle/supertab
-	url = git://github.com/ervandew/supertab.git
-[submodule "bunndle/ctrlp.vim"]
-	path = bunndle/ctrlp.vim
-	url = git://github.com/kien/ctrlp.vim.git
-[submodule "bunndle/vim-markdown"]
-	path = bunndle/vim-markdown
-	url = git://github.com/tpope/vim-markdown.git
