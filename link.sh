@@ -13,31 +13,34 @@ showlink() {
     fi
 }
 
-if [ ! -h ~/.tmux.conf ] ; then
-ln -sf ~/$DOTPATH/tmux.conf ~/.tmux.conf
-showlink 0 "tmux conf"
-else
-showlink 1 "tmux conf"
-fi
 
-if [ ! -h ~/.tmux ]; then
-ln -sf ~/$DOTPATH/tmux ~/.tmux
-showlink 0 "tmux"
-else
-showlink 1 "tmux"
-fi
+dotrc () {
+    target="$HOME/.$1"
+    src="$HOME/$DOTPATH/$1"
 
-if [ ! -h ~/.vimrc ]; then
-ln -sf ~/$DOTPATH/vimrc ~/.vimrc
-showlink 0 "vimrc"
-else
-showlink 1 "vimrc"
-fi
+    if [ -n "$2" ]; then
+        src="$HOME/$DOTPATH/$2"
+    fi
 
-if [ ! -h ~/.vim ]; then
-ln -sf ~/$DOTPATH/ ~/.vim
-showlink 0 "vim"
-else
-showlink 1 "vim"
-fi
+    if [ ! -h "$target" ]; then
+        ln -sf "$src" "$target"
+        showlink 0 "$1"
+    else
+        showlink 1 "$1"
+    fi
+}
 
+# vim
+dotrc 'vim'
+dotrc 'vimrc'
+
+# tmux
+dotrc 'tmux'
+dotrc 'tmux.conf'
+
+# oh-my-zsh
+dotrc 'oh-my-zsh' 'tools/oh-my-zsh'
+dotrc 'zshrc'
+
+# snippetrc
+dotrc 'snippetrc'

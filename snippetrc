@@ -1,0 +1,6 @@
+#!/bin/sh
+# load my custom snippetrc
+# FIXME: replace by use zsh
+find "$HOME/.snippet/" | while read fn ; do
+	. "$fn"
+done
