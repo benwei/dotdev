@@ -1,13 +1,17 @@
 set encoding=utf-8
+
+"set background=dark
+
 call pathogen#infect()
 filetype on
 filetype indent on
 filetype plugin on
 syntax enable
 set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-let g:Powerline_symbols = 'fancy'
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+""" following line is only on iTerm 2 OSX
+"let g:Powerline_symbols = 'fancy'
 colorscheme solarized
 set number
 set cindent
