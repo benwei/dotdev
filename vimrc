@@ -11,7 +11,7 @@ set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 """ following line is only on iTerm 2 OSX
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 colorscheme solarized
 set number
 set cindent

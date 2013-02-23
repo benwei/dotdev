@@ -1,0 +1,118 @@
+#!/usr/bin/env sh
+#
+# git-m -- A collection of Macros of Git extensions to provide 
+#  less keyboard input for git operations
+#
+# source location:
+#    https://github.com/benwei/dotdev/gitmacro/git-m
+#
+# Copyright 2013 Ben Wei. All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 
+#    1. Redistributions of source code must retain the above copyright notice,
+#       this list of conditions and the following disclaimer.
+# 
+#    2. Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY VINCENT DRIESSEN ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL VINCENT DRIESSEN OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+# INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+# OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+# EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+# The views and conclusions contained in the software and documentation are
+# those of the authors and should not be interpreted as representing official
+# policies, either expressed or implied, of Ben Wei.
+#
+
+if [ "0$DEBUG" -eq 1 ]; then
+    set -x
+fi
+
+usage () {
+    echo -n "git macro <option> <macro> \
+\nmacro:\
+\n co <order> if order is \
+\n  default: list branch order \
+\n  0: checkout next release branch \
+\n  n: checkout specific order branch \
+"
+    return 1
+}
+
+get_current_branch_name () {
+    current_branch=`git rev-parse --abbrev-ref HEAD`
+}
+
+get_branch_list () {
+    branch_list="`git branch --list "*feature/*" | grep -v '^*' | sed -e 's/^[ \t]//g'`"
+}
+
+show_branch_list_with_order () {
+    n=1
+    for i in $branch_list ; do
+        echo "[$n] $i"
+        n=$((n + 1))
+    done
+    return 0
+}
+
+next_dev_branchname="develop"
+
+do_checkout () {
+    get_current_branch_name
+    if [ "$current_branch" = "$1" ]; then
+        return 0
+    fi
+    echo "checkout $1" 
+    git checkout $@
+    return $?
+}
+
+do_checkout_branch_by_order () {
+    order=$1
+    shift
+    if [ "$order" = "0" ]; then
+        do_checkout $next_dev_branchname $@
+        return $?
+    fi
+    n=1
+    for i in $branch_list ; do
+        if [ "$n" -eq $order ]; then
+            do_checkout $i $@
+            return $?
+        fi
+        n=$((n + 1))
+    done
+    echo "checkout incorrect order $order"
+    return 1
+}
+
+opt="$1"
+case $opt in
+co)
+    shift
+    get_branch_list
+    if [ -z "$1" ]; then
+        show_branch_list_with_order
+        exit 0
+    fi
+    do_checkout_branch_by_order $@
+    ret=$?
+    ;;
+*)
+    usage
+    ret=$?
+    ;;
+esac
+
+exit $ret
