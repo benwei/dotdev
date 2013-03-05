@@ -46,3 +46,5 @@ dotrc 'zshrc'
 
 # snippetrc
 dotrc 'snippetrc'
+
+sh tools/gitm/git-macro-setup
