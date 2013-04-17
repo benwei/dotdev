@@ -2,5 +2,4 @@
 . ./settings.conf
 
 cd ~/$DOTPATH
-git submodule init
-git submodule update
+git submodule update --init --recursive
