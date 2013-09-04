@@ -10,6 +10,7 @@ ZSH_THEME="robbyrussell"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ps="ps ax"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -48,3 +49,9 @@ export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
 [ -f "$HOME/.git-cmd" ] && . "$HOME/.git-cmd"
+
+[ -f "$HOME/src/env_scripts/android.sh" ] && . "$HOME/src/env_scripts/android.sh"
+
+export PATH=$PATH:/opt/gcc-arm-none-eabi-4_7-2013q1/bin
+
+. ~/src/scripts/stm32_env.sh

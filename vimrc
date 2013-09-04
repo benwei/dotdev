@@ -18,10 +18,11 @@ set cindent
 set smartindent
 set autoindent
 set laststatus=2
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+
+"set expandtab
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
 
 "Tabe open
 noremap TT :tabe<Space>
