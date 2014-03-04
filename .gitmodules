@@ -40,3 +40,6 @@
 [submodule "tools/gitm"]
 	path = tools/gitm
 	url = git@github.com:benwei/gitm.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
