@@ -13,8 +13,18 @@ showlink() {
     fi
 }
 
+showcopied() {
+    expr="$1"
+    tag="$2"
+    if [ $expr -eq 0 ] ; then
+        echo "$tag copied"
+    else
+        echo "$tag has been copied"
+    fi
+}
 
-dotrc () {
+
+ln_dotrc () {
     target="$HOME/.$1"
     src="$DOTPATH/$1"
 
@@ -32,19 +42,37 @@ dotrc () {
     fi
 }
 
+cp_dotrc () {
+    target="$HOME/.$1"
+    src="$DOTPATH/$1"
+
+    if [ "$2" = "none" ]; then
+        src="$DOTPATH" # special for vim
+    elif [ -n "$2" ]; then
+        src="$DOTPATH/$2"
+    fi
+
+    if [ ! -f "$target" ]; then
+        cp -f "$src" "$target"
+        showcopy 1 "$src"
+    else
+        echo "$target has been existed"
+    fi
+}
+
 # vim
-dotrc 'vim' 'none'
-dotrc 'vimrc'
+ln_dotrc 'vim' 'none'
+cp_dotrc 'vimrc'
 
 # tmux
-dotrc 'tmux'
-dotrc 'tmux.conf'
+ln_dotrc 'tmux'
+cp_dotrc 'tmux.conf'
 
 # oh-my-zsh
-dotrc 'oh-my-zsh' 'tools/oh-my-zsh'
-dotrc 'zshrc'
+ln_dotrc 'oh-my-zsh' 'tools/oh-my-zsh'
+cp_dotrc 'zshrc'
 
 # snippetrc
-dotrc 'snippetrc'
+cp_dotrc 'snippetrc'
 
 sh tools/gitm/git-macro-setup
