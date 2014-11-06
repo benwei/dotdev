@@ -37,9 +37,12 @@
 [submodule "bundle/vim-coffee-script"]
 	path = bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
-[submodule "tools/gitm"]
-	path = tools/gitm
-	url = git@github.com:benwei/gitm.git
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "bundle/vim-gocode"]
+	path = bundle/vim-gocode
+	url = https://github.com/Blackrush/vim-gocode.git
+[submodule "taglist"]
+	path = taglist
+	url = https://github.com/vim-scripts/taglist.vim.git
